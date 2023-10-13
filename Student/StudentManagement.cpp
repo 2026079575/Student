@@ -1,7 +1,7 @@
 #include "StudentManagement.h"
 using namespace std;
 
-void Student::showChoice()
+void Student::show_choice()
 {
     cout << "\t\t主菜单" << endl;
     cout << "***************************************" << endl;
@@ -14,10 +14,10 @@ void Student::showChoice()
     cout << "***************************************" << endl;
     cout << "请选择: ";
 }
-void Student::showStudent(const string& filename){
+void Student::show_student(const string& filename){
     ifstream inFile(filename);
     if(inFile.is_open()){
-        if(isFileEmpty(filename)){
+        if(is_file_empty(filename)){
             cout<< "未有任何学生信息!"<< endl;
         } else{
             string line;
@@ -33,25 +33,25 @@ void Student::showStudent(const string& filename){
     }
     inFile.close();
 }
-bool Student::isFileEmpty(const std::string &filename) {
+bool Student::is_file_empty(const std::string &filename) {
     ifstream file(filename);
     bool isEmpty = file.peek() == ifstream::traits_type::eof();
     file.close();
     return isEmpty;
 }
-void Student::insertStudent(const string& filename){
+void Student::insert_student(const string& filename){
     cout << "请输入学生学号: ";
     getline(cin,number);
-    while(!isNumber(number)){
+    while(!is_number(number)){
         cout << "学生学号格式错误!请重新输入(格式: 10位纯数字)" << endl;
         cout << "请输入学生学号: ";
         getline(cin,number);
     }
-    while(checkForPlagiarism(filename,number)){
+    while(check_for_plagiarism(filename,number)){
         cout << "学生学号已存在!请重新输入" << endl;
         cout << "请输入学生学号: ";
         getline(cin,number);
-        while(!isNumber(number)){
+        while(!is_number(number)){
             cout << "学生学号格式错误!请重新输入(格式: 10位纯数字)" << endl;
             cout << "请输入学生学号: ";
             getline(cin,number);
@@ -61,14 +61,14 @@ void Student::insertStudent(const string& filename){
     getline(cin,name);
     cout << "请输入学生性别(男/女): ";
     getline(cin,sex);
-    while(!isSex(sex)){
+    while(!is_sex(sex)){
         cout << "学生性别输入错误!请重新输入(男/女)" << endl;
         cout << "请输入学生性别(男/女): ";
         getline(cin,sex);
     }
     cout << "请输入学生年龄: ";
     getline(cin,age);
-    while(!isAge(age)){
+    while(!is_age(age)){
         cout << "学生年龄格式错误!请重新输入(纯数字)" << endl;
         cout << "请输入学生年龄: ";
         getline(cin,age);
@@ -84,7 +84,7 @@ void Student::insertStudent(const string& filename){
     }
     outFile.close();
 }
-bool Student::isNumber(const string &str){
+bool Student::is_number(const string &str){
     for(char c:str){
         if(!isdigit(c)){
             return false;
@@ -95,13 +95,13 @@ bool Student::isNumber(const string &str){
     }
     return true;
 }
-bool Student::isSex(const std::string &str) {
+bool Student::is_sex(const std::string &str) {
     if(str == "男"||str == "女"){
         return true;
     }
     return false;
 }
-bool Student::isSerialNumber(const std::string &str) {
+bool Student::is_serial_number(const std::string &str) {
     return std::all_of(str.begin(), str.end(), [](char c) {
         return isdigit(c);
     });
@@ -112,7 +112,7 @@ bool Student::isSerialNumber(const std::string &str) {
 //    }
 //    return true;
 }
-bool Student::isAge(const std::string &str) {
+bool Student::is_age(const std::string &str) {
     return std::all_of(str.begin(), str.end(), [](char c) {
         return isdigit(c);
     });
@@ -123,13 +123,13 @@ bool Student::isAge(const std::string &str) {
 //    }
 //    return true;
 }
-//void Student::printVector(const vector<std::string> &v) {
+//void Student::print_vector(const vector<std::string> &v) {
 //    for(const auto& it : v){
 //        cout << it << endl;
 //    }
 //}
 
-bool Student::checkForPlagiarism(const std::string &filename, const std::string &digit) {
+bool Student::check_for_plagiarism(const std::string &filename, const std::string &digit) {
     ifstream inFile(filename);
     string id,line;
     while(getline(inFile,line)){
@@ -142,11 +142,11 @@ bool Student::checkForPlagiarism(const std::string &filename, const std::string 
     return false;
 }
 
-void Student::deleteStudent(const std::string &filename) {
+void Student::delete_student(const std::string &filename) {
     string serialNumber;
     cout << "请输入要删除的学生信息序号: ";
     getline(cin, serialNumber);
-    while(!isSerialNumber(serialNumber)){
+    while(!is_serial_number(serialNumber)){
         cout << "输入错误!(纯数字)" << endl;
         cout << "请重新输入: ";
         getline(cin, serialNumber);
@@ -165,7 +165,7 @@ void Student::deleteStudent(const std::string &filename) {
             cout << "请重新输入序号: ";
             getline(cin, serialNumber);
             serial = stoi(serialNumber);
-            while(!isSerialNumber(serialNumber)){
+            while(!is_serial_number(serialNumber)){
                 cout << "输入错误!(纯数字)" << endl;
                 cout << "请重新输入序号: ";
                 getline(cin, serialNumber);
@@ -191,7 +191,7 @@ void Student::deleteStudent(const std::string &filename) {
                 }
                 outFile.close();
                 cout << "已删除该学生信息" << endl;
-                showStudent(filename);
+                show_student(filename);
             } else{
                 cout << "提示: 文件无法打开,请检查文件!";
             }
@@ -201,11 +201,11 @@ void Student::deleteStudent(const std::string &filename) {
         inFile.close();
     }
 }
-void Student::reviseStudent(const std::string &filename) {
+void Student::revise_student(const std::string &filename) {
     string serialNumber;
     cout << "请输入要修改的学生信息序号: ";
     getline(cin, serialNumber);
-    while(!isSerialNumber(serialNumber)){
+    while(!is_serial_number(serialNumber)){
         cout << "输入错误!(纯数字)" << endl;
         cout << "请重新输入: ";
         getline(cin, serialNumber);
@@ -224,7 +224,7 @@ void Student::reviseStudent(const std::string &filename) {
             cout << "请重新输入序号: ";
             getline(cin, serialNumber);
             serial = stoi(serialNumber);
-            while(!isSerialNumber(serialNumber)){
+            while(!is_serial_number(serialNumber)){
                 cout << "输入错误!(纯数字)" << endl;
                 cout << "请重新输入序号: ";
                 getline(cin, serialNumber);
@@ -238,14 +238,14 @@ void Student::reviseStudent(const std::string &filename) {
         getline(cin,name);
         cout << "请输入学生性别(男/女): ";
         getline(cin,sex);
-        while(!isSex(sex)){
+        while(!is_sex(sex)){
             cout << "学生性别输入错误!请重新输入(男/女)" << endl;
             cout << "请输入学生性别(男/女): ";
             getline(cin,sex);
         }
         cout << "请输入学生年龄: ";
         getline(cin,age);
-        while(!isAge(age)){
+        while(!is_age(age)){
             cout << "学生年龄格式错误!请重新输入(纯数字)" << endl;
             cout << "请输入学生年龄: ";
             getline(cin,age);
@@ -275,7 +275,7 @@ void Student::reviseStudent(const std::string &filename) {
                 }
                 outFile.close();
                 cout << "已修改该学生信息" << endl;
-                showStudent(filename);
+                show_student(filename);
             } else{
                 cout << "提示: 文件无法打开,请检查文件!";
             }
@@ -286,7 +286,7 @@ void Student::reviseStudent(const std::string &filename) {
     }
 }
 
-void Student::selectStudent(const std::string &filename) {
+void Student::select_student(const std::string &filename) {
     string choice;
     while (true){
         cout << "\t     查找学生信息" << endl;
@@ -306,25 +306,25 @@ void Student::selectStudent(const std::string &filename) {
             getline(cin,choice);
         }
         if(choice == "1"){
-            studentNumberLookup(filename);
+            student_number_lookup(filename);
         }else if(choice == "2"){
-            studentNameLookup(filename);
+            student_name_lookup(filename);
         }else if(choice == "3"){
-            studentSexLookup(filename);
+            student_sex_lookup(filename);
         }else if(choice == "4"){
-            studentAgeLookup(filename);
+            student_age_lookup(filename);
         }else if(choice == "5"){
-            studentSpecializedLookup(filename);
+            student_specialized_lookup(filename);
         }else if(choice == "6"){
             break;
         }
     }
 }
-void Student::studentNumberLookup(const std::string &filename) {
+void Student::student_number_lookup(const std::string &filename) {
     cout << "请输入要查询的学生信息的学号: " << endl;
     cout << "请输入学号: ";
     getline(cin,number);
-    while(!isNumber(number)){
+    while(!is_number(number)){
         cout << "学生学号格式错误!请重新输入(格式: 10位纯数字)" << endl;
         cout << "请输入学生学号: ";
         getline(cin,number);
@@ -353,7 +353,7 @@ void Student::studentNumberLookup(const std::string &filename) {
     }
 }
 
-void Student::studentNameLookup(const std::string &filename) {
+void Student::student_name_lookup(const std::string &filename) {
     cout << "请输入要查询的学生信息的姓名: " << endl;
     cout << "请输入姓名: ";
     getline(cin,name);
@@ -384,11 +384,11 @@ void Student::studentNameLookup(const std::string &filename) {
         cout << "未查询到该学生信息!" << endl;
     }
 }
-void Student::studentSexLookup(const std::string &filename) {
+void Student::student_sex_lookup(const std::string &filename) {
     cout << "请输入要查询的学生信息的性别: " << endl;
     cout << "请输入性别: ";
     getline(cin,sex);
-    while(!isSex(sex)){
+    while(!is_sex(sex)){
         cout << "学生性别输入错误!请重新输入(男/女)" << endl;
         cout << "请输入学生性别(男/女): ";
         getline(cin,sex);
@@ -421,11 +421,11 @@ void Student::studentSexLookup(const std::string &filename) {
         cout << "未查询到该学生信息!" << endl;
     }
 }
-void Student::studentAgeLookup(const std::string &filename) {
+void Student::student_age_lookup(const std::string &filename) {
     cout << "请输入要查询的学生信息的年龄: " << endl;
     cout << "请输入年龄: ";
     getline(cin,age);
-    while(!isAge(age)){
+    while(!is_age(age)){
         cout << "学生年龄格式错误!请重新输入(纯数字)" << endl;
         cout << "请输入学生年龄: ";
         getline(cin,age);
@@ -459,7 +459,7 @@ void Student::studentAgeLookup(const std::string &filename) {
         cout << "未查询到该学生信息!" << endl;
     }
 }
-void Student::studentSpecializedLookup(const std::string &filename) {
+void Student::student_specialized_lookup(const std::string &filename) {
     cout << "请输入要查询的学生信息的专业: " << endl;
     cout << "请输入专业: ";
     getline(cin,specialized);

@@ -19,7 +19,7 @@ int main(){
     }
     Student student{};
     while (true){
-        student.showChoice();
+        student.show_choice();
         getline(cin,choice);
         while(choice!="1"&&choice!="2"&&choice!="3"&&choice!="4"&&choice!="5"&&choice!="6"){
             cout << "输入错误请重新输入!" << endl;
@@ -27,15 +27,15 @@ int main(){
             getline(cin,choice);
         }
         if(choice == "1"){
-            student.showStudent(filename);
+            student.show_student(filename);
         }else if(choice == "2"){
-            student.insertStudent(filename);
+            student.insert_student(filename);
         }else if(choice == "3"){
-            student.deleteStudent(filename);
+            student.delete_student(filename);
         }else if(choice == "4"){
-            student.reviseStudent(filename);
+            student.revise_student(filename);
         }else if(choice == "5"){
-            student.selectStudent(filename);
+            student.select_student(filename);
         }else if(choice == "6"){
             cout << "Bye Bye~" << endl;
             break;

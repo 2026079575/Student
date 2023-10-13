@@ -16,41 +16,41 @@ private:
     string specialized;
 public:
     //显示菜单
-    static void showChoice();
+    void show_choice();
     //显示所有学生信息
-    static void showStudent(const string& filename);
+    void show_student(const string& filename);
     //添加学生信息
-    void insertStudent(const string &filename);
+    void insert_student(const string &filename);
     //删除学生信息
-    static void deleteStudent(const string&filename);
+    void delete_student(const string&filename);
     //查找学生信息
-    void selectStudent(const string&filename);
+    void select_student(const string&filename);
     //修改学生信息
-    void reviseStudent(const string &filename);
+    void revise_student(const string &filename);
     //判断文件是否为空文件
-    static bool isFileEmpty(const string& filename);
+    static bool is_file_empty(const string& filename);
     //判断学号格式是否正确
-    static bool isNumber(const string &str);
+    static bool is_number(const string &str);
     //判断性别格式是否正确
-    static bool isSex(const string &str);
+    static bool is_sex(const string &str);
     //判断年龄格式是否正确
-    static bool isAge(const string &str);
+    static bool is_age(const string &str);
     //判断是否为纯数字
-    static bool isSerialNumber(const string &str);
+    static bool is_serial_number(const string &str);
     //查找文件中是否有当前学号
-    static bool checkForPlagiarism(const string &filename,const string &digit);
+    static bool check_for_plagiarism(const string &filename,const string &digit);
     //打印vector
-    void printVector(const vector<string>&v);
+    void print_vector(const vector<string>&v);
     //根据学号查找
-    void studentNumberLookup(const string &filename);
+    void student_number_lookup(const string &filename);
     //根据姓名查找
-    void studentNameLookup(const string &filename);
+    void student_name_lookup(const string &filename);
     //根据性别查找
-    void studentSexLookup(const string &filename);
+    void student_sex_lookup(const string &filename);
     //根据年龄查找
-    void studentAgeLookup(const string &filename);
+    void student_age_lookup(const string &filename);
     //根据专业查找
-    void studentSpecializedLookup(const string &filename);
+    void student_specialized_lookup(const string &filename);
 
 
 
